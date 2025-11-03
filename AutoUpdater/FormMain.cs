@@ -11,8 +11,8 @@ using System.Windows.Forms;
 
 namespace AutoUpdater {
     public partial class FormMain : Form {
-        private UpdaterConfig _cfg = null!;
-        private Updater _updater = null!;
+        private UpdaterConfig _cfg = null;
+        private Updater _updater = null;
 
         public FormMain() {
             InitializeComponent();
