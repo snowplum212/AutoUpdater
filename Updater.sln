@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36429.23 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoUpdater", "AutoUpdater\AutoUpdater.csproj", "{F4C49043-B739-42CF-81EB-EA54B239EFCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{F9347CAC-3369-48E9-8E97-E1690B3BE26D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F4C49043-B739-42CF-81EB-EA54B239EFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4C49043-B739-42CF-81EB-EA54B239EFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4C49043-B739-42CF-81EB-EA54B239EFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4C49043-B739-42CF-81EB-EA54B239EFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9347CAC-3369-48E9-8E97-E1690B3BE26D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9347CAC-3369-48E9-8E97-E1690B3BE26D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9347CAC-3369-48E9-8E97-E1690B3BE26D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9347CAC-3369-48E9-8E97-E1690B3BE26D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6287C3D3-F633-48CF-BB71-E3EBE669C236}
+		SolutionGuid = {F5116BA9-8508-443B-BCEC-72F0917A7DC6}
 	EndGlobalSection
 EndGlobal
