@@ -1,36 +1,48 @@
 using System;
 using System.Configuration;
 using System.IO;
+using System.Windows.Forms;
 using LibGit2Sharp;
 
 namespace Updater {
-    internal class Program {
+    internal static class Program {
+        [STAThread]
         static int Main(string[] args) {
             var parsedArguments = ParseArguments(args);
-            var exitCode = 0;
+            RepositorySettings settings;
 
             try {
-                var settings = LoadSettings();
-                var targetDirectory = ResolveTargetDirectory(parsedArguments, settings);
-                EnsureRepositoryInitialized(targetDirectory, settings.RepositoryUrl);
-                Console.WriteLine($"Using repository: {targetDirectory}");
-                UpdateRepository(targetDirectory);
+                settings = LoadSettings();
             }
             catch (Exception ex) {
-                Console.Error.WriteLine($"Updater failed: {ex.Message}");
-                exitCode = 1;
+                ShowFatalError(ex);
+                return 1;
             }
-            finally {
-                if (parsedArguments.KeepConsoleOpen) {
-                    Console.WriteLine("Press any key to exit...");
-                    Console.ReadKey();
+
+            try {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+
+                using (var form = new FormUpdater(settings, parsedArguments)) {
+                    Application.Run(form);
+                    return form.ExitCode;
                 }
             }
-
-            return exitCode;
+            catch (Exception ex) {
+                ShowFatalError(ex);
+                return 1;
+            }
         }
 
-        private static RepositorySettings LoadSettings() {
+        private static void ShowFatalError(Exception ex) {
+            MessageBox.Show(
+                ex.ToString(),
+                "Updater",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
+
+        internal static RepositorySettings LoadSettings() {
             var repositoryUrl = ConfigurationManager.AppSettings["RepositoryUrl"] ?? string.Empty;
             var localPathSetting = ConfigurationManager.AppSettings["LocalRepositoryPath"] ?? string.Empty;
             var expandedLocalPath = string.IsNullOrWhiteSpace(localPathSetting)
@@ -86,7 +98,7 @@ namespace Updater {
                 || string.Equals(argument, "--keep-open", StringComparison.OrdinalIgnoreCase);
         }
 
-        private static string ResolveTargetDirectory(ParsedArguments parsedArguments, RepositorySettings settings) {
+        internal static string ResolveTargetDirectory(ParsedArguments parsedArguments, RepositorySettings settings) {
             if (!string.IsNullOrWhiteSpace(parsedArguments.ExplicitPath)) {
                 var providedPath = Path.GetFullPath(parsedArguments.ExplicitPath);
                 if (Directory.Exists(providedPath)) {
@@ -129,7 +141,7 @@ namespace Updater {
             throw new InvalidOperationException("Could not locate a git repository. Provide a path or configure RepositoryUrl and LocalRepositoryPath.");
         }
 
-        private static void EnsureRepositoryInitialized(string repositoryPath, string repositoryUrl) {
+        internal static void EnsureRepositoryInitialized(string repositoryPath, string repositoryUrl, Action<string> log = null) {
             if (Directory.Exists(repositoryPath)) {
                 if (!Repository.IsValid(repositoryPath)) {
                     throw new InvalidOperationException($"Target directory exists but is not a git repository: {repositoryPath}");
@@ -149,13 +161,13 @@ namespace Updater {
             }
 
             Directory.CreateDirectory(parentDirectory);
-            Console.WriteLine($"Cloning repository from {repositoryUrl}...");
+            log?.Invoke($"Cloning repository from {repositoryUrl}...");
 
             var cloneOptions = new CloneOptions();
             Repository.Clone(repositoryUrl, fullPath, cloneOptions);
         }
 
-        private static string FindGitRepositoryRoot(string startDirectory) {
+        internal static string FindGitRepositoryRoot(string startDirectory) {
             var directoryInfo = new DirectoryInfo(Path.GetFullPath(startDirectory));
             while (directoryInfo != null) {
                 var gitFolder = Path.Combine(directoryInfo.FullName, ".git");
@@ -169,11 +181,11 @@ namespace Updater {
             return null;
         }
 
-        private static bool IsGitRepository(string directory) {
+        internal static bool IsGitRepository(string directory) {
             return Repository.IsValid(directory);
         }
 
-        private static void UpdateRepository(string repositoryPath) {
+        internal static MergeStatus UpdateRepository(string repositoryPath, Action<string> log = null) {
             Repository repository = null;
             try {
                 repository = new Repository(repositoryPath);
@@ -187,18 +199,20 @@ namespace Updater {
                 };
 
                 var result = Commands.Pull(repository, signature, pullOptions);
-                Console.WriteLine($"Pull result: {result.Status}");
+                log?.Invoke($"Pull result: {result.Status}");
 
                 if (result.Status == MergeStatus.Conflicts) {
                     throw new InvalidOperationException("Pull resulted in merge conflicts. Manual intervention required.");
                 }
+
+                return result.Status;
             }
             finally {
                 repository?.Dispose();
             }
         }
 
-        private static Signature CreateSignature() {
+        internal static Signature CreateSignature() {
             var name = ConfigurationManager.AppSettings["CommitSignatureName"];
             if (string.IsNullOrWhiteSpace(name)) {
                 name = "Updater";
@@ -213,12 +227,12 @@ namespace Updater {
         }
     }
 
-    internal sealed class ParsedArguments {
+    public sealed class ParsedArguments {
         public string ExplicitPath { get; set; }
         public bool KeepConsoleOpen { get; set; }
     }
 
-    internal sealed class RepositorySettings {
+    public sealed class RepositorySettings {
         public RepositorySettings(string repositoryUrl, string localRepositoryPath) {
             RepositoryUrl = repositoryUrl;
             LocalRepositoryPath = localRepositoryPath;
