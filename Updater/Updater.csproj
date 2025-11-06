@@ -8,7 +8,7 @@
     <ProjectGuid>{F9347CAC-3369-48E9-8E97-E1690B3BE26D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Updater</RootNamespace>
-    <AssemblyName>Updater</AssemblyName>
+    <AssemblyName>App.Updater</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -37,6 +37,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>MuAPI_1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LibGit2Sharp, Version=0.31.0, Culture=neutral, PublicKeyToken=7cbde695407f0333, processorArchitecture=MSIL">
@@ -98,6 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Art Render GIF by time.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MuAPI_1.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

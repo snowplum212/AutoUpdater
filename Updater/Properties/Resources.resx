@@ -118,15 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="fiber optic perfect loops GIF" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fiber optic perfect loops GIF.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Hailuo_Video_웨이브 패턴이 파도처럼 움직이는 gif 만들어줘 6초 _4419383868220579841" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Hailuo_Video_웨이브 패턴이 파도처럼 움직이는 gif 만들어줘 6초 _4419383868220579841.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Hailuo_Video_웨이브 패턴이 파도처럼 움직이는 gif 만들어줘 6초 _441938386822057984" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Hailuo_Video_웨이브 패턴이 파도처럼 움직이는 gif 만들어줘 6초 _441938386822057984.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Art Render GIF by time" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Art Render GIF by time.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

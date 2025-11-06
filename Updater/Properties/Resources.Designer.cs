@@ -69,35 +69,5 @@ namespace Updater.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap fiber_optic_perfect_loops_GIF {
-            get {
-                object obj = ResourceManager.GetObject("fiber optic perfect loops GIF", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Hailuo_Video_웨이브_패턴이_파도처럼_움직이는_gif_만들어줘_6초__441938386822057984 {
-            get {
-                object obj = ResourceManager.GetObject("Hailuo_Video_웨이브 패턴이 파도처럼 움직이는 gif 만들어줘 6초 _441938386822057984", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Hailuo_Video_웨이브_패턴이_파도처럼_움직이는_gif_만들어줘_6초__4419383868220579841 {
-            get {
-                object obj = ResourceManager.GetObject("Hailuo_Video_웨이브 패턴이 파도처럼 움직이는 gif 만들어줘 6초 _4419383868220579841", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
