@@ -47,6 +47,9 @@
       <HintPath>..\packages\LibGit2Sharp.0.31.0\lib\net472\LibGit2Sharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MuApi">
+      <HintPath>..\..\MuDev\MuApi\MuApi\bin\Debug\MuApi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />

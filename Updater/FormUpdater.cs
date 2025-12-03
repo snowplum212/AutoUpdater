@@ -103,7 +103,8 @@ namespace Updater {
                 return;
             }
 
-            var timestamp = DateTime.Now.ToString("HH:mm:ss");
+            //var timestamp = DateTime.Now.ToString("HH:mm:ss");
+            var timestamp = MuApi.DateTime.DateFormat("yy-mm-dd hh:mm:ss");
             lbStatus.Text = $"[{timestamp}] {message}";
         }
     }
