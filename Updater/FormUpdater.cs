@@ -47,6 +47,10 @@ namespace Updater {
                 UpdateProgress(90);
                 AppendLog($"Merge status: {mergeStatus}");
 
+                UpdateStatus("Hiding repository metadata...");
+                UpdateProgress(95);
+                await Task.Run(() => Program.HideGitMetadata(targetDirectory, AppendLog));
+
                 UpdateStatus("Update completed successfully.");
                 UpdateProgress(100);
                 ExitCode = 0;

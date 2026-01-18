@@ -1,6 +1,7 @@
 using System;
 using System.Configuration;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using LibGit2Sharp;
 
@@ -224,6 +225,27 @@ namespace Updater {
             }
 
             return new Signature(name, email, DateTimeOffset.Now);
+        }
+
+        internal static void HideGitMetadata(string repositoryPath, Action<string> log = null) {
+            if (string.IsNullOrWhiteSpace(repositoryPath)) {
+                return;
+            }
+
+            var gitDirectory = Path.Combine(repositoryPath, ".git");
+            if (!Directory.Exists(gitDirectory)) {
+                log?.Invoke($"Git metadata not found: {gitDirectory}");
+                return;
+            }
+
+            try {
+                var info = new DirectoryInfo(gitDirectory);
+                info.Attributes |= FileAttributes.Hidden | FileAttributes.System;
+                log?.Invoke($"Hidden git metadata at {gitDirectory}");
+            }
+            catch (Exception ex) {
+                log?.Invoke($"Failed to hide git metadata: {ex.Message}");
+            }
         }
     }
 

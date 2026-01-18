@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AskPermission.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AskPermission.Designer.cs">
+      <DependentUpon>AskPermission.cs</DependentUpon>
+    </Compile>
     <Compile Include="ColoredProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AskPermission.resx">
+      <DependentUpon>AskPermission.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormUpdater.resx">
       <DependentUpon>FormUpdater.cs</DependentUpon>
     </EmbeddedResource>
